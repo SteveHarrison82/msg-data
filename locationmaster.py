@@ -122,7 +122,7 @@ def create_txt_file(cdr_list, file_name='LOCATION-MASTER.TXT'):
             read_csv = csv.DictReader(input_file, delimiter='|')
             # save ignoring certain columns by using list: order_header or order_header_1
 
-            write_csv = csv.DictWriter(output_file, order_header, delimiter='|', extrasaction='ignore')
+            write_csv = csv.DictWriter(output_file, order_header_1, delimiter='|', extrasaction='ignore')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
