@@ -107,27 +107,45 @@ def number_of_lines(lines_to_generate=1):
         gen_line_with_attribute = enrich_msg_lines(gen_line_with_attribute)
         msgline_to_list(gen_line_with_attribute)
 
-
+#messageio
+#save
 def create_txt_file(cdr_list, file_name='LOCATION-MASTER.TXT'):
     with open('LOCATION-MASTER.TXT-UNORDERED', 'wb') as csv_file:
         wr = csv.writer(csv_file, delimiter="|")
         wr.writerow(cdr_list[0].keys())
+        cdr_list.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
         for cdr in cdr_list:
             wr.writerow(cdr.values())
 
     with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
         with open(file_name, 'wb') as output_file:
             read_csv = csv.DictReader(input_file, delimiter='|')
+            # save ignoring certain columns by using list: order_header or order_header_1
+
             write_csv = csv.DictWriter(output_file, order_header, delimiter='|', extrasaction='ignore')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
 
+
+    # create a test file and then later compare the outputs
+    with open('LOCATION-MASTER.TXT-SORTED', 'wb') as sorted_file:
+        wr = csv.writer(sorted_file, delimiter="|")
+        wr.writerow(cdr_list[0].keys())
+        cdr_list.sort(key=lambda x: (x.STREET, x.PLANT_ID), reverse=False)
+        for cdr in cdr_list:
+            wr.writerow(cdr.values())
+
+#messageIO
+#serialize
 def serialize_msg_structure():
     with open('LOCATION-MASTER.ser', 'wb') as f:
+        # order of msg_structure is changed as it is sorted in place
         for each_msg_line in msg_structure:
             pickle.dump(each_msg_line.as_dict(), f)
 
+#messageIO
+#load from file
 def deserialize_msg_structure():
     objects = []
     global msg_structure_reload;
@@ -143,6 +161,15 @@ def deserialize_msg_structure():
         create_line_on_deserialization = LocMaster.from_json(msg_line_as_json)
         msg_structure_reload.append(create_line_on_deserialization)
 
+#simple sort and compare
+#Compare message_structures
+def compare_message_before_after():
+    msg_structure.sort(key=lambda x: (x.STREET, x.PLANT_ID), reverse=False)
+    msg_structure_reload.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
+    for i in range(len(msg_structure)) :
+        if msg_structure[i].PLANT_ID == msg_structure_reload[i].PLANT_ID:
+            print "Success"
+
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
@@ -150,8 +177,8 @@ if __name__ == "__main__":
     serialize_msg_structure()
     line1 = msg_structure[0]
     print line1.serialize()
-
     #line1.as_json()
     deserialize_msg_structure()
     print msg_structure_reload
     create_txt_file(msg_structure_reload, "LOCATION-MASTER-DESERIALIZED.TXT")
+    compare_message_before_after()
