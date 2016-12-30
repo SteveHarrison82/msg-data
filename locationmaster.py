@@ -59,6 +59,7 @@ order_header_1 = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", 
 
 read_schema = StringIO(location_master)
 spec = json.load(read_schema)
+# Uset the above json spec to build the object
 builder = pjs.ObjectBuilder(spec)
 ns = builder.build_classes()
 LocMaster = ns.LocationMaster
@@ -167,8 +168,11 @@ def compare_message_before_after():
     msg_structure.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
     msg_structure_reload.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
     for i in range(len(msg_structure)) :
-        if msg_structure[i].PLANT_ID == msg_structure_reload[i].PLANT_ID:
+        if msg_structure[i].PLANT_ID == msg_structure_reload[i].PLANT_ID and \
+                        msg_structure[i].VENDOR_ID == msg_structure_reload[i].VENDOR_ID:
             print "Success"
+        else:
+            print "Failed"
 
 if __name__ == "__main__":
     number_of_lines(17)
