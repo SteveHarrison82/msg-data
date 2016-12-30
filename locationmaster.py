@@ -120,9 +120,30 @@ def make_csv(cdr_list, file_name='LOCATION-MASTER.TXT'):
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
+import jsonpickle
+import pickle
+
+def serialize_msg_structure():
+    with open('LOCATION-MASTER.ser', 'wb') as f:
+        frozen = jsonpickle.encode(msg_structure)
+        pickle.dump (frozen, f)
+
+msg_structure_reload = []
+
+def deserialize_msg_structure():
+    global msg_structure_reload;
+    with open('LOCATION-MASTER.ser', 'rb') as f:
+        msg_structure_reload_json = pickle.load(f)
+        msg_structure_reload = jsonpickle.decode(msg_structure_reload_json)
+
+
+
 
 
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
     make_csv(msg_structure)
+    serialize_msg_structure()
+    deserialize_msg_structure()
+    print msg_structure_reload
