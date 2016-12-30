@@ -49,7 +49,7 @@ location_master = u"""{
 }"""
 
 order_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE", "COUNTRY_CODE", "ZIPCODE", "BLKD_STOCK_RLV_FLAG"]
-
+order_header_1 = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE", "COUNTRY_CODE", "ZIPCODE"]
 import json
 import python_jsonschema_objects as pjs
 from io import StringIO
@@ -57,7 +57,6 @@ from io import StringIO
 
 read_schema = StringIO(location_master)
 spec = json.load(read_schema)
-
 builder = pjs.ObjectBuilder(spec)
 ns = builder.build_classes()
 LocMaster =  ns.LocationMaster
@@ -66,7 +65,6 @@ import csv
 
 import random, string
 from robot.api import logger
-
 
 def random_int(length):
     valid_letters='1234567890'
@@ -110,13 +108,14 @@ def make_csv(cdr_list, file_name='LOCATION-MASTER.TXT'):
     with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
         with open(file_name, 'wb') as output_file:
             read_csv = csv.DictReader(input_file,  delimiter='|')
-            write_csv = csv.DictWriter(output_file, order_header, delimiter='|')
+            write_csv = csv.DictWriter(output_file, order_header_1, delimiter='|', extrasaction='ignore')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
 
 if __name__ == "__main__":
-    number_of_lines(12)
+
+    number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
     make_csv(msg_structure)
 
