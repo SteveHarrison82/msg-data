@@ -164,7 +164,7 @@ def deserialize_msg_structure():
 #simple sort and compare
 #Compare message_structures
 def compare_message_before_after():
-    msg_structure.sort(key=lambda x: (x.STREET, x.PLANT_ID), reverse=False)
+    msg_structure.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
     msg_structure_reload.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
     for i in range(len(msg_structure)) :
         if msg_structure[i].PLANT_ID == msg_structure_reload[i].PLANT_ID:
