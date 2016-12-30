@@ -15,7 +15,16 @@ location_master = u"""{
             "position": "2",
             "type": "string"
             },
+        "VENDOR_ID": {
+            "description": "calendars",
+            "position": "2",
+            "type": "string"
+            },
         "STREET": {
+            "position": "3",
+            "type": "string"
+        },
+        "CITY": {
             "position": "3",
             "type": "string"
         },
@@ -39,7 +48,7 @@ location_master = u"""{
     "required": ["PLANT_ID"]
 }"""
 
-order_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "STREET", "REGION_CODE", "COUNTRY_CODE", "ZIPCODE", "BLKD_STOCK_RLV_FLAG"]
+order_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE", "COUNTRY_CODE", "ZIPCODE", "BLKD_STOCK_RLV_FLAG"]
 
 import json
 import python_jsonschema_objects as pjs
@@ -92,16 +101,16 @@ def number_of_lines(lines_to_generate=1):
         msgline_to_list(gen_line_with_attribute)
 
 def make_csv(cdr_list, file_name='LOCATION-MASTER.TXT'):
-    with open(file_name, 'wb') as csv_file:
+    with open('LOCATION-MASTER.TXT-UNORDERED', 'wb') as csv_file:
         wr = csv.writer(csv_file, delimiter="|")
         wr.writerow(cdr_list[0].keys())
         for cdr in cdr_list:
             wr.writerow(cdr.values())
 
-    with open('LOCATION-MASTER.TXT', 'rb') as i:
-        with open('LOCATION-MASTER.TXT', 'wb') as o:
-            read_csv = csv.DictReader(i,  delimiter='|')
-            write_csv = csv.DictWriter(o, order_header, extrasaction='ignore',  delimiter='|')
+    with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
+        with open(file_name, 'wb') as output_file:
+            read_csv = csv.DictReader(input_file,  delimiter='|')
+            write_csv = csv.DictWriter(output_file, order_header, delimiter='|')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
