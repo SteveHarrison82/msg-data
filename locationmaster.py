@@ -63,10 +63,12 @@ builder = pjs.ObjectBuilder(spec)
 ns = builder.build_classes()
 LocMaster = ns.LocationMaster
 msg_structure = []
+msg_structure_reload = []
 import csv
 
 import random, string
 from robot.api import logger
+import pickle
 
 
 def random_int(length):
@@ -116,34 +118,40 @@ def make_csv(cdr_list, file_name='LOCATION-MASTER.TXT'):
     with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
         with open(file_name, 'wb') as output_file:
             read_csv = csv.DictReader(input_file, delimiter='|')
-            write_csv = csv.DictWriter(output_file, order_header_1, delimiter='|', extrasaction='ignore')
+            write_csv = csv.DictWriter(output_file, order_header, delimiter='|', extrasaction='ignore')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
-import jsonpickle
-import pickle
 
 def serialize_msg_structure():
     with open('LOCATION-MASTER.ser', 'wb') as f:
-        frozen = jsonpickle.encode(msg_structure)
-        pickle.dump (frozen, f)
-
-msg_structure_reload = []
+        for each_msg_line in msg_structure:
+            pickle.dump(each_msg_line.as_dict(), f)
 
 def deserialize_msg_structure():
+    objects = []
     global msg_structure_reload;
-    with open('LOCATION-MASTER.ser', 'rb') as f:
-        msg_structure_reload_json = pickle.load(f)
-        msg_structure_reload = jsonpickle.decode(msg_structure_reload_json)
+    with open('LOCATION-MASTER.ser', 'rb') as openfile:
+        while True:
+            try:
+                objects.append(pickle.load(openfile))
+            except EOFError:
+                break
 
-
-
-
+    for each_obj in objects:
+        msg_line_as_json = json.dumps(each_obj)
+        create_line_on_deserialization = LocMaster.from_json(msg_line_as_json)
+        msg_structure_reload.append(create_line_on_deserialization)
 
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
     make_csv(msg_structure)
     serialize_msg_structure()
+    line1 = msg_structure[0]
+    print line1.serialize()
+
+    #line1.as_json()
     deserialize_msg_structure()
     print msg_structure_reload
+    make_csv(msg_structure_reload, "LOCATION-MASTER-DESERIALIZED.TXT")
