@@ -108,7 +108,7 @@ def number_of_lines(lines_to_generate=1):
         msgline_to_list(gen_line_with_attribute)
 
 
-def make_csv(cdr_list, file_name='LOCATION-MASTER.TXT'):
+def create_txt_file(cdr_list, file_name='LOCATION-MASTER.TXT'):
     with open('LOCATION-MASTER.TXT-UNORDERED', 'wb') as csv_file:
         wr = csv.writer(csv_file, delimiter="|")
         wr.writerow(cdr_list[0].keys())
@@ -146,7 +146,7 @@ def deserialize_msg_structure():
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
-    make_csv(msg_structure)
+    create_txt_file(msg_structure)
     serialize_msg_structure()
     line1 = msg_structure[0]
     print line1.serialize()
@@ -154,4 +154,4 @@ if __name__ == "__main__":
     #line1.as_json()
     deserialize_msg_structure()
     print msg_structure_reload
-    make_csv(msg_structure_reload, "LOCATION-MASTER-DESERIALIZED.TXT")
+    create_txt_file(msg_structure_reload, "LOCATION-MASTER-DESERIALIZED.TXT")
