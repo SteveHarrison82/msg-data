@@ -1,0 +1,32 @@
+{
+    "title": "LOCATION MASTER",
+    "type": "object",
+    "properties": {
+        "PLANT_ID": {
+            "type": "string"
+        },
+        "PLANT_DESC": {
+            "type": "string"
+        },
+        "FACTORY_CALENDAR_ID": {
+            "description": "calendars",
+            "type": "string"
+        },
+        "STREET": {
+            "type": "string"
+        },
+        "REGION_CODE": {
+            "type": "string"
+        },
+        "COUNTRY_CODE": {
+            "type": "string"
+        },
+        "ZIPCODE": {
+            "type": "string"
+        },
+        "BLKD_STOCK_RLV_FLAG": {
+            "type": "string"
+        }
+    },
+    "required": ["PLANT_ID"]
+}
