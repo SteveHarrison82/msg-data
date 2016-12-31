@@ -73,10 +73,12 @@ from robot.api import logger
 import pickle
 
 
+# todo: do create a location-master class and add all these methods there!
+# todo: remove utility functions to a utility class
+
 def random_int(length):
     valid_letters = '1234567890'
     return ''.join((random.choice(valid_letters) for i in xrange(length)))
-
 
 def random_word(length):
     return ''.join(random.choice(string.lowercase) for i in range(length))
@@ -213,6 +215,9 @@ def nFilter_one_liner(filters, msg_structure):
 def nFilter_using_lambda(filters, msg_structure):
     return ifilter(lambda t: all(f(t) for f in filters), msg_structure)
 
+
+
+# write unit test and stop running from main
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
