@@ -123,8 +123,8 @@ def create_txt_file(msg_structure, file_name='LOCATION-MASTER.TXT'):
             wr = csv.writer(csv_file, delimiter="|")
             #wr.writerow(msg_structure[0].keys())
             #msg_structure.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
-            for cdr in msg_structure:
-                wr.writerow(cdr.values())
+            for msg_line in msg_structure:
+                wr.writerow(msg_line.values())
             return True
 
 
@@ -132,8 +132,8 @@ def create_txt_file(msg_structure, file_name='LOCATION-MASTER.TXT'):
         wr = csv.writer(csv_file, delimiter="|")
         wr.writerow(msg_structure[0].keys())
         msg_structure.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
-        for cdr in msg_structure:
-            wr.writerow(cdr.values())
+        for msg_line in msg_structure:
+            wr.writerow(msg_line.values())
 
     with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
         with open(file_name, 'wb') as output_file:
@@ -151,8 +151,8 @@ def create_txt_file(msg_structure, file_name='LOCATION-MASTER.TXT'):
         wr = csv.writer(sorted_file, delimiter="|")
         wr.writerow(msg_structure[0].keys())
         msg_structure.sort(key=lambda x: (x.STREET, x.PLANT_ID), reverse=False)
-        for cdr in msg_structure:
-            wr.writerow(cdr.values())
+        for msg_line in msg_structure:
+            wr.writerow(msg_line.values())
 
 #messageIO
 #serialize
