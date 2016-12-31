@@ -113,6 +113,8 @@ def number_of_lines(lines_to_generate=1):
         msgline_to_list(gen_line_with_attribute)
 
 #messageio
+#messageio-other reference: 'tablib' library can do better than what 'csv' library does!
+#messaagio-other reference: 'tablib' library is from the author of 'Requests' library
 #save
 # generating different kinds of txt files (sorted, unsorted, filtered, rearragenged column, droppedcolumn, so on)
 # repeating code below just to make it obvious snippet
