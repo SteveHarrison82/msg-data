@@ -59,14 +59,15 @@ order_header_1 = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", 
 
 read_schema = StringIO(location_master)
 spec = json.load(read_schema)
-# Uset the above json spec to build the object
+# Uset the above json spec to build the template class and corresponding object
 builder = pjs.ObjectBuilder(spec)
 ns = builder.build_classes()
 LocMaster = ns.LocationMaster
 msg_structure = []
 msg_structure_reload = []
 import csv
-
+import datetime
+from itertools import ifilter
 import random, string
 from robot.api import logger
 import pickle
@@ -80,13 +81,16 @@ def random_int(length):
 def random_word(length):
     return ''.join(random.choice(string.lowercase) for i in range(length))
 
+def random_pick(choices):
+    return random.choice(choices)
 
+#create message lines with these attributes
 def enrich_msg_lines(gen_line_with_attribute):
-    gen_line_with_attribute.PLANT_ID = random_int(4)
+    gen_line_with_attribute.PLANT_ID = random_pick([random_int(4), '8888'])
     gen_line_with_attribute.PLANT_DESC = gen_line_with_attribute.PLANT_ID + random_word(25)
     gen_line_with_attribute.FACTORY_CALENDAR_ID = random_word(2)
     gen_line_with_attribute.VENDOR_ID = random_word(10)
-    gen_line_with_attribute.STREET = random_word(12) + ' ' + random_word(10)
+    gen_line_with_attribute.STREET = random_pick([random_word(12) + ' ' + random_word(10), 'St. Michael street'])
     gen_line_with_attribute.CITY = random_word(20)
     gen_line_with_attribute.REGION_CODE = random_word(20)
     gen_line_with_attribute.COUNTRY_CODE = random_int(3)
@@ -170,9 +174,27 @@ def compare_message_before_after():
     for i in range(len(msg_structure)) :
         if msg_structure[i].PLANT_ID == msg_structure_reload[i].PLANT_ID and \
                         msg_structure[i].VENDOR_ID == msg_structure_reload[i].VENDOR_ID:
-            print "Success"
+            logger.console("Success")
         else:
-            print "Failed"
+            logger.console("Failed")
+
+#filters and chain of filters
+#each filters return true or false: add any other logic here
+def f1(msg_line): return (msg_line.PLANT_ID == '8888')
+def f2(msg_line): return (msg_line.STREET == 'St. Michael street')
+
+def filter_using_non_lambda_way(filters, msg_structure):
+    for f in filters:
+        msg_structure = filter(f, msg_structure)
+        if not msg_structure:
+            return msg_structure
+    return msg_structure
+
+def nFilter_one_liner(filters, msg_structure):
+    return (t for t in msg_structure if all(f(t) for f in filters))
+
+def nFilter_using_lambda(filters, msg_structure):
+    return ifilter(lambda t: all(f(t) for f in filters), msg_structure)
 
 if __name__ == "__main__":
     number_of_lines(17)
@@ -180,9 +202,10 @@ if __name__ == "__main__":
     create_txt_file(msg_structure)
     serialize_msg_structure()
     line1 = msg_structure[0]
-    print line1.serialize()
-    #line1.as_json()
+    logger.console(line1.serialize())
     deserialize_msg_structure()
-    print msg_structure_reload
+    logger.console (msg_structure_reload)
     create_txt_file(msg_structure_reload, "LOCATION-MASTER-DESERIALIZED.TXT")
     compare_message_before_after()
+    my_filtered_msg_structure = filter_using_non_lambda_way([f1, f2], msg_structure)
+    logger.console(my_filtered_msg_structure)
