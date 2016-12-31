@@ -114,12 +114,25 @@ def number_of_lines(lines_to_generate=1):
 
 #messageio
 #save
-def create_txt_file(cdr_list, file_name='LOCATION-MASTER.TXT'):
+# generating different kinds of txt files (sorted, unsorted, filtered, rearragenged column, droppedcolumn, so on)
+# repeating code below just to make it obvious snippet
+def create_txt_file(msg_structure, file_name='LOCATION-MASTER.TXT'):
+
+    if 'FILTER' in file_name:
+        with open(file_name, 'wb') as csv_file:
+            wr = csv.writer(csv_file, delimiter="|")
+            #wr.writerow(msg_structure[0].keys())
+            #msg_structure.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
+            for cdr in msg_structure:
+                wr.writerow(cdr.values())
+            return True
+
+
     with open('LOCATION-MASTER.TXT-UNORDERED', 'wb') as csv_file:
         wr = csv.writer(csv_file, delimiter="|")
-        wr.writerow(cdr_list[0].keys())
-        cdr_list.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
-        for cdr in cdr_list:
+        wr.writerow(msg_structure[0].keys())
+        msg_structure.sort(key=lambda x: (x.PLANT_ID, x.STREET), reverse=False)
+        for cdr in msg_structure:
             wr.writerow(cdr.values())
 
     with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
@@ -136,9 +149,9 @@ def create_txt_file(cdr_list, file_name='LOCATION-MASTER.TXT'):
     # create a test file and then later compare the outputs
     with open('LOCATION-MASTER.TXT-SORTED', 'wb') as sorted_file:
         wr = csv.writer(sorted_file, delimiter="|")
-        wr.writerow(cdr_list[0].keys())
-        cdr_list.sort(key=lambda x: (x.STREET, x.PLANT_ID), reverse=False)
-        for cdr in cdr_list:
+        wr.writerow(msg_structure[0].keys())
+        msg_structure.sort(key=lambda x: (x.STREET, x.PLANT_ID), reverse=False)
+        for cdr in msg_structure:
             wr.writerow(cdr.values())
 
 #messageIO
@@ -190,9 +203,11 @@ def filter_using_non_lambda_way(filters, msg_structure):
             return msg_structure
     return msg_structure
 
+# all or any can be called in the filter below
 def nFilter_one_liner(filters, msg_structure):
-    return (t for t in msg_structure if all(f(t) for f in filters))
+    return (t for t in msg_structure if any(f(t) for f in filters))
 
+# all or any can be called in the filter below
 def nFilter_using_lambda(filters, msg_structure):
     return ifilter(lambda t: all(f(t) for f in filters), msg_structure)
 
@@ -209,3 +224,7 @@ if __name__ == "__main__":
     compare_message_before_after()
     my_filtered_msg_structure = filter_using_non_lambda_way([f1, f2], msg_structure)
     logger.console(my_filtered_msg_structure)
+    create_txt_file(my_filtered_msg_structure, "LOCATION-MASTER-FILTER1.TXT")
+    my_filtered_msg_structure = nFilter_one_liner([f1, f2], msg_structure)
+    create_txt_file(my_filtered_msg_structure,"LOCATION-MASTER-FILTER2.TXT" )
+
