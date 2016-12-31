@@ -163,7 +163,7 @@ def serialize_msg_structure():
             pickle.dump(each_msg_line.as_dict(), f)
 
 #messageIO
-#load from file
+#deserialize
 def deserialize_msg_structure():
     objects = []
     global msg_structure_reload;
