@@ -52,9 +52,9 @@ location_master = u"""{
     "required": ["PLANT_ID"]
 }"""
 
-order_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
+position_of_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
                 "COUNTRY_CODE", "ZIPCODE", "BLKD_STOCK_RLV_FLAG"]
-order_header_1 = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
+position_of_header_subset = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
                   "COUNTRY_CODE", "ZIPCODE"]
 
 read_schema = StringIO(location_master)
@@ -138,9 +138,9 @@ def create_txt_file(msg_structure, file_name='LOCATION-MASTER.TXT'):
     with open('LOCATION-MASTER.TXT-UNORDERED', 'rb') as input_file:
         with open(file_name, 'wb') as output_file:
             read_csv = csv.DictReader(input_file, delimiter='|')
-            # save ignoring certain columns by using list: order_header or order_header_1
+            # save ignoring certain columns by using list: position_of_header or position_of_header_subset
 
-            write_csv = csv.DictWriter(output_file, order_header_1, delimiter='|', extrasaction='ignore')
+            write_csv = csv.DictWriter(output_file, position_of_header_subset, delimiter='|', extrasaction='ignore')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
