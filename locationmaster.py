@@ -78,10 +78,12 @@ from robot.api import logger
 import pickle
 
 
+# todo: do create a location-master class and add all these methods there!
+# todo: remove utility functions to a utility class
+
 def random_int(length):
     valid_letters = '1234567890'
     return ''.join((random.choice(valid_letters) for i in xrange(length)))
-
 
 def random_word(length):
     return ''.join(random.choice(string.lowercase) for i in range(length))
@@ -119,6 +121,8 @@ def number_of_lines(lines_to_generate=1):
         msgline_to_list(gen_line_with_attribute)
 
 #messageio
+#messageio-other reference: 'tablib' library can do better than what 'csv' library does!
+#messaagio-other reference: 'tablib' library is from the author of 'Requests' library
 #save
 # generating different kinds of txt files (sorted, unsorted, filtered, rearragenged column, droppedcolumn, so on)
 # repeating code below just to make it obvious snippet
@@ -169,7 +173,7 @@ def serialize_msg_structure():
             pickle.dump(each_msg_line.as_dict(), f)
 
 #messageIO
-#load from file
+#deserialize
 def deserialize_msg_structure():
     objects = []
     global msg_structure_reload;
@@ -218,6 +222,7 @@ def nFilter_using_lambda(filters, msg_structure):
     return ifilter(lambda t: all(f(t) for f in filters), msg_structure)
 
 
+<<<<<<< HEAD
 import numpy
 
 loc_file = open ("LOCATION-MASTER.TXT", "r")
@@ -321,6 +326,10 @@ def nFilter_one_liner_2(filters, msg_structure):
     for each_value in a:
         print each_value.next()
 
+=======
+
+# write unit test and stop running from main
+>>>>>>> 626648e1a14a7cdec03e429e5a56fe1f0a765ad1
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
