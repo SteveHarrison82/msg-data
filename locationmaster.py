@@ -54,6 +54,11 @@ location_master = u"""{
 
 position_of_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
                 "COUNTRY_CODE", "ZIPCODE", "BLKD_STOCK_RLV_FLAG"]
+
+datatype_of_header = [("PLANT_ID", '>S1'), ("PLANT_DESC", '>S1'), ("FACTORY_CALENDAR_ID", '>S1'), ("VENDOR_ID", '>S1'), ("STREET", '>S1'), ("CITY", '>S1'), ("REGION_CODE", '>S1'),
+                      ("COUNTRY_CODE", '>S1'), ("ZIPCODE", '>S1'), ("BLKD_STOCK_RLV_FLAG", '>S1')]
+
+
 position_of_header_subset = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
                   "COUNTRY_CODE", "ZIPCODE"]
 
@@ -106,6 +111,7 @@ def msgline_to_list(msg_line):
     msg_structure.append(msg_line)
 
 
+
 def number_of_lines(lines_to_generate=1):
     for each_line in range(lines_to_generate):
         gen_line_with_attribute = LocMaster()
@@ -140,7 +146,7 @@ def create_txt_file(msg_structure, file_name='LOCATION-MASTER.TXT'):
             read_csv = csv.DictReader(input_file, delimiter='|')
             # save ignoring certain columns by using list: position_of_header or position_of_header_subset
 
-            write_csv = csv.DictWriter(output_file, position_of_header_subset, delimiter='|', extrasaction='ignore')
+            write_csv = csv.DictWriter(output_file, position_of_header, delimiter='|', extrasaction='ignore')
             write_csv.writeheader()
             for read_row in read_csv:
                 write_csv.writerow(read_row)
@@ -211,6 +217,110 @@ def nFilter_one_liner(filters, msg_structure):
 def nFilter_using_lambda(filters, msg_structure):
     return ifilter(lambda t: all(f(t) for f in filters), msg_structure)
 
+
+import numpy
+
+loc_file = open ("LOCATION-MASTER.TXT", "r")
+loc_file_as_string = loc_file.read()
+d = StringIO(unicode(loc_file_as_string))
+data = numpy.loadtxt(d, dtype='str', delimiter='|', usecols=(0,1,2,3,4,5,6,7,8,9), unpack=True, skiprows=1)
+#arr = numpy.genfromtxt(d, delimiter=('|'), autostrip=True)
+
+data_zipped = zip(data[0], data[1], data[2], data[3])
+
+print data
+
+
+hub = u"""{
+    "title": "Hub",
+    "type": "object",
+    "properties": {
+        "Enterprise_Code": {
+            "position": "0",
+            "type": "string"
+        },
+        "Enterprise_Description": {
+            "position": "1",
+            "type": "string"
+        },
+        "Site_Name": {
+            "position": "2",
+            "type": "string"
+            },
+        "Site_Description": {
+            "position": "3",
+            "type": "string"
+            },
+        "Site_Type": {
+            "position": "4",
+            "type": "string"
+        }
+    }
+}"""
+
+import json
+import python_jsonschema_objects as pjs
+from io import StringIO
+import numpy
+
+read_schema = StringIO(hub)
+spec = json.load(read_schema)
+# Uset the above json spec to build the template class and corresponding object
+builder = pjs.ObjectBuilder(spec)
+ns = builder.build_classes()
+hub = ns.Hub
+
+
+import random, string
+
+hub_message_structure = []
+
+def enrich_msg_lines_hub(gen_line_with_attribute, zip_line):
+    gen_line_with_attribute.Enterprise_Code= str(zip_line[0])
+    gen_line_with_attribute.Enterprise_Description = str(zip_line[1])
+    gen_line_with_attribute.Site_Name = str(zip_line[2])
+    gen_line_with_attribute.Site_Description = str(zip_line[3])
+    gen_line_with_attribute.Site_Type = str(zip_line[4])
+    hub_message_structure.append(gen_line_with_attribute)
+    return hub_message_structure
+
+
+import numpy
+
+gen_line_with_attribute_hub = hub()
+loc_file = open ("Hub-1.0", "r")
+loc_file_as_string = loc_file.read()
+d = StringIO(unicode(loc_file_as_string))
+data = numpy.loadtxt(d, dtype='str', delimiter='\t', usecols=(0,1,2,3,4), unpack=True, skiprows=1)
+#arr = numpy.genfromtxt(d, delimiter=('|'), autostrip=True)
+data_zipped = zip(data[0], data[1], data[2], data[3], data[4])
+for each_value in data_zipped:
+    enrich_msg_lines_hub(gen_line_with_attribute_hub, each_value)
+
+def f3(msg_line, i=1): return (msg_line.PLANT_ID == hub_message_structure[i].Site_Name)
+def f4(msg_line, i=1): return (msg_line.STREET == hub_message_structure[i].Site_Description)
+
+
+def filter_using_non_lambda_way2(filters, msg_structure):
+    for f in filters:
+        msg_structure = filter(f, msg_structure)
+        if not msg_structure:
+            return msg_structure
+    return msg_structure
+
+def validate_input_output():
+    deserialize_msg_structure()
+    msg_structure.sort(key=lambda x: (x.PLANT_ID, x.PLANT_DESC), reverse=False)
+    my_filtered_msg_structure = filter_using_non_lambda_way2([f3, f4], msg_structure)
+    return len(my_filtered_msg_structure)>1
+
+def nFilter_one_liner_2(filters, msg_structure):
+    a = []
+    for i in range(0,15):
+        a.append((t for t in msg_structure if all(f(t,i) for f in filters)))
+    for each_value in a:
+        print each_value.next()
+
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))
@@ -226,5 +336,8 @@ if __name__ == "__main__":
     logger.console(my_filtered_msg_structure)
     create_txt_file(my_filtered_msg_structure, "LOCATION-MASTER-FILTER1.TXT")
     my_filtered_msg_structure = nFilter_one_liner([f1, f2], msg_structure)
+    # when a generator is created, then, headers could not be properly handled!
     create_txt_file(my_filtered_msg_structure,"LOCATION-MASTER-FILTER2.TXT" )
+    validate_input_output()
+    nFilter_one_liner_2([f3, f4], msg_structure)
 

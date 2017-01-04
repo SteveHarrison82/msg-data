@@ -1,18 +1,5 @@
-PLANT_ID|PLANT_DESC|FACTORY_CALENDAR_ID|VENDOR_ID|STREET|CITY|REGION_CODE|COUNTRY_CODE|ZIPCODE
-1560|1560gapapwccfsszvauhirnqaufhh|gp|kpoggubosc|vkcfuhsgirar gwqbtsqpym|johxciaaxcailyulwdof|zdtfsmifiuezasfcznry|891|6799667259
-3753|3753ghgortbichgtryyuvbxhfapsw|sx|jjtnjkunaw|opkaowhsidkz cnidrvoixj|foxichxfzzsujgnenhjb|smmjhjtjzbqtjoudjxjp|100|0399343879
-4575|4575oqkwnojskcwtppasihdgqrrek|bq|xzqubwhrgl|zpsqaujtvyov bwtloijvqz|kmijglzrpagowxxjtsnv|xkrinihvjhseptwkmnkx|910|8201968165
-6178|6178nbqvixxyfijnfskzpvvetoail|pa|cdxplawrfj|wudzmuehqtbk fgoddwcoyc|xbkyiimlnxpeuzplpzzn|yftsxzjnoemxjflzqzfx|030|1516546973
-7541|7541kbvmzhzdkvgfhhqcfhitfiyqd|uq|josfmmdqrp|St. Michael street|vezebvjjfbncllouofbk|ginmfrlzpdslfsedeyts|672|5609387421
-7626|7626qorcjyqiyhrnxaiitdxfaiyhg|io|vqykuojubr|scvvthbhsdab xdzrjzbxio|emozmgxmrzpjnxsidctq|flzedrviouagduwgsrxu|255|3148847784
-8232|8232tqhfesefdgddyinelegifdzcm|fn|grtccukyha|St. Michael street|qyjrfgupqqlwmuftvqai|ovzvycxrzrcxkrfwoevj|120|9117232189
-8842|8842vrkmfyqymxnwxxkyjzxfqeitr|rf|aqkjyovctu|St. Michael street|cjjoqukfaqesrtxedjkg|aysvuudafgpkyyguugjw|629|5769981715
-8888|8888jvlpicejplogpjcccmdsccwjj|uc|qcsdjculdq|St. Michael street|ezfybfwygjtshyvzzuke|nkkdytlmtyhqgykkbamm|401|2796692004
-8888|8888cpbxhociqiozlzzibejcrhkpx|wu|yrhmmjllxb|St. Michael street|dndvtzogqegbmerbekpj|ttthskfbtdcrhibhzqck|963|1868421755
-8888|8888vreschrronwmieoskkpdexxnl|lz|pmeinvjvdp|St. Michael street|kcxvtsbbveqgwgsnzdmx|qayknlqrclbkrykamnlu|454|2517098587
-8888|8888pajywkhsudvrfydcwnoptpbee|oo|ppjamsmkmj|bibmrofbtrod pvmastlczf|kxwlbnvnhbzambrtukfk|aiwciynghsvaqcngcryi|508|0071039654
-8888|8888epnhtjlwyyjqfgviepjduhrxi|ni|ejaxnsnfrg|bxuhsymnmlaq pjfjvzdzpk|ngohcnctbmvcvosqyteq|gahnoevkedysagkfxgif|054|5092247478
-8888|8888raxqphjpqikqbkcsnehjwaejm|rq|ivhaeyblfm|jozjzxlgtsjr mqfzhjmanj|qbvcaxhfhcozyiysfkqk|rpszefjjiktbjzaojxul|317|3318256853
-8888|8888wwuxpsuwfrwphwqutoztniuhg|hy|dvdcmnrrob|pfdiiwpegddw flwqnjgqvp|mdpqsbxwcpbydbgekkiw|uejvmfdarqrllbjhcfsg|779|2268962499
-8888|8888nqvzcwgjhngwhizfmzvmxmdjz|zd|uryfshhqxc|qkcvcsrmsyen gkeimppxmm|nvcclzmqddonysthblci|mznylkeqlqqpnetmyuwd|455|9550275352
-8888|8888zqjtiatpggqogrcgdqclwuaip|hz|oeyujyxiet|ytkkyezlbzkh gkprvwxtis|cisbrcvvbhvbeflidnly|zlvfosbqalttzvtrynsw|507|9462449904
+PLANT_ID|PLANT_DESC|FACTORY_CALENDAR_ID|VENDOR_ID|STREET|CITY|REGION_CODE|COUNTRY_CODE|ZIPCODE|BLKD_STOCK_RLV_FLAG
+0006|0006Description here: New York|69|0000000004|Pillnitzer Strasse 241|Frankfurt|European park|316|0477957383|X
+0006|0006Description here: Werk|69|0000000003|Pillnitzer Strasse 241|Paris|European park|660|3085267505|X
+0007|0007Description here: Hamburg|69|0000000003|Alsterdorfer Strasse 13|Frankfurt|Hethbrew|849|8200424098|X
+0006|0006Description here: Hamburg|JP|0000000001|Pillnitzer Strasse 241|Paris|Hethbrew|191|4018694370|X

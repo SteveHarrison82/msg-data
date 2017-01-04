@@ -1,0 +1,18 @@
+PLANT_ID|PLANT_DESC|FACTORY_CALENDAR_ID|VENDOR_ID|STREET|CITY|REGION_CODE|COUNTRY_CODE|ZIPCODE|BLKD_STOCK_RLV_FLAG
+0673|0673wcardsdeleqioogssmknxtpau|gv|yuaunflxtw|St. Michael street|shdgknhcrklqgshtvnqm|lplpevtbdequdodqzvcy|500|3000468171|X
+1159|1159yxcjtxqybpdwsfhpljbjhvakg|tj|ttixcbgstb|zkkbhtbxfsti ntwbgrwddo|ltvnyjknnipugbygzkfc|tpgpiukuezpvdfonersp|633|2101146531|X
+3078|3078gzkplzebinenqygjadkjzkvoq|se|ubjzjotmnv|St. Michael street|tonwvsbddbynbztkjtmi|qwklurorhjscnlypvurd|201|7106696447|X
+4660|4660tekugehjqkpirzyxzfyvtiung|dx|uhcwctbtnx|St. Michael street|fyxlcuvihzjvyabqopix|czgmtruwfqhbfynhmmls|508|2530833324|X
+5452|5452qnkbtrroluqurnvhqodfmlkch|gq|ikhezhkarl|St. Michael street|ifblkolbucxaqwrnmbuz|jcwdlwvlrqxfnegudcea|614|9587079613|X
+5830|5830zsrfxwfnnhokycxnadphkuglb|sp|oucgvnintq|St. Michael street|mfwigxmctjhugxotearw|anborcjjyzocottgfhkv|677|4051329902|X
+6601|6601agucwqiqgfsanmgmcydyxbmhi|ra|pbgivgyfaa|St. Michael street|auffpjieiydtoeeaohye|viczplmkprsbmiladlaz|656|7908012655|X
+8049|8049msjtbmejdvfeziqcegyguladp|cd|krmhnjjozg|hdbwonmqpjio faisdvkhbi|hykijbqvaxpzanlozcdu|upkwtxkzdzwuulwhxszt|435|7721415965|X
+8888|8888fxrrsqosxrnpgwhzlqcddesat|sp|wpeycctgqt|St. Michael street|dxixxevravgenfqvjlcp|ahxagmcdabheqrmtvmnz|466|0747994975|X
+8888|8888jcnppqaokextkquejxilytsub|po|tljmebared|St. Michael street|prhyqyiuymhdpnsimkhe|uettvlznunqasepbfmyf|109|1092971920|X
+8888|8888zapatgccnolcdjdgzjhhrhzcr|tf|gwwtzljvik|cxqqsnrpfgex dmypwauxig|azsalqzyirqbudkjojkw|fxcmspoogpolulalpccg|634|9229119930|X
+8888|8888owpziqjmkkzrgtvxcxpyzsgjd|yy|nvhfgbyzvs|gyzfekecjpmg osmipfywhk|cqqysmgmxlcmukkgwcsl|peidwqhhzazpxuzxokll|046|9524896825|X
+8888|8888wtkbqpsbiavrpqmyqprxczqbw|wq|eapzojayka|idqpvzkdwmbk cbfoncxzio|xosegwihxwyhzuhykkor|ewuizahtdcsqblvvmpij|883|5501889307|X
+8888|8888kpfuaqhsjtlgnsevdaltndovj|ik|tlvwnoqkhn|iqaekaclqwnx ekgrwhzqdx|bpmaulufavhhguiybmjs|ssgiymvdmgrmpajlaohx|392|1375274007|X
+8888|8888rqdzihaojjvmjttfdgcghgfwr|us|jmqjazqovb|mznyceegjvlc ppsrbbfogv|vvgjnajuvxzdnnirstmz|xvsurcdxpomqhakpcvns|063|6980555407|X
+8888|8888yezunkkstbudqtqwwpetyjkkt|sy|vbymdxknof|yizzoeqbdcth ztmhkxrqjt|torsifcthumivemxbzhg|mfvceawotwqjffqxvxzj|815|0415932911|X
+9732|9732sawppdadvbtmgzqtdtkektdty|nj|ymhbcdhint|fvpnbwgpgtnf zvvsrypwvo|bisrnyaawdhnwhnhgwlk|cetumpenpfdarnvoarul|347|2337330070|X
