@@ -1,10 +1,17 @@
-#EXTRACT_DATE|PLANT|PLANT_DESC|PLANT_FACTORY_CALENDAR|PLANT_VENDOR|PLANT_ADDR_STREET|
-#PLANT_ADDR_CITY|PLANT_ADDR_STATE|PLANT_ADDR_COUNTRY|PLANT_ADDR_ZIP_CODE|PLANT_BLKD_STOCK_RLV
-
-
 import json
 import python_jsonschema_objects as pjs
 from io import StringIO
+import csv
+import datetime
+from itertools import ifilter
+import random, string
+from robot.api import logger
+import pickle
+import json
+import python_jsonschema_objects as pjs
+from io import StringIO
+import numpy
+import random, string
 
 location_master = u"""{
     "title": "LOCATION MASTER",
@@ -36,7 +43,7 @@ location_master = u"""{
             "position": "5",
             "type": "string"
         },
-        "REGION_CODE": {
+        "STATE_CODE": {
             "position": "6",
             "type": "string"
         },
@@ -57,7 +64,7 @@ location_master = u"""{
 }"""
 
 
-position_of_LM_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "REGION_CODE",
+position_of_LM_header = ["PLANT_ID", "PLANT_DESC", "FACTORY_CALENDAR_ID", "VENDOR_ID", "STREET", "CITY", "STATE_CODE",
                 "COUNTRY_CODE", "ZIP_CODE", "BLKD_STOCK_RLV_FLAG"]
 
 
@@ -70,12 +77,7 @@ ns = builder.build_classes()
 LocMaster = ns.LocationMaster
 msg_structure = []
 msg_structure_reload = []
-import csv
-import datetime
-from itertools import ifilter
-import random, string
-from robot.api import logger
-import pickle
+
 
 def random_int(length):
     valid_letters = '1234567890'
@@ -96,11 +98,11 @@ def enrich_msg_lines(gen_line_with_attribute):
     gen_line_with_attribute.VENDOR_ID = random_pick(['0000000001', '0000000002', '0000000003', '0000000004'])
     gen_line_with_attribute.STREET = random_pick(['Alsterdorfer Strasse 13','Neurottstrass 16','Pillnitzer Strasse 241','St. Michael street'])
     gen_line_with_attribute.CITY = random_pick(['Paris','Berlin','Frankfurt','Hamburg'])
-    gen_line_with_attribute.REGION_CODE = random_pick(['Wunderland', 'European park', 'Hethbrew'])
+    gen_line_with_attribute.STATE_CODE = random_pick(['Wunderland', 'European park', 'Hethbrew'])
     gen_line_with_attribute.COUNTRY_CODE = random_int(3)
     gen_line_with_attribute.ZIP_CODE = random_int(10)
     gen_line_with_attribute.BLKD_STOCK_RLV_FLAG = 'X'
-    logger.console("Generate line is {0}".format(gen_line_with_attribute))
+    logger.console("Generate line is {0}".format(LocMaster))
     return gen_line_with_attribute
 
 def msgline_to_list(msg_line):
@@ -187,10 +189,7 @@ hub = u"""{
     }
 }"""
 
-import json
-import python_jsonschema_objects as pjs
-from io import StringIO
-import numpy
+
 
 read_schema = StringIO(hub)
 spec = json.load(read_schema)
@@ -198,10 +197,6 @@ spec = json.load(read_schema)
 builder = pjs.ObjectBuilder(spec)
 ns = builder.build_classes()
 hub = ns.Hub
-
-
-import random, string
-
 hub_message_structure = []
 
 def enrich_msg_lines_hub(gen_line_with_attribute, zip_line):
@@ -213,10 +208,8 @@ def enrich_msg_lines_hub(gen_line_with_attribute, zip_line):
     hub_message_structure.append(gen_line_with_attribute)
     return hub_message_structure
 
-
-import numpy
-
 gen_line_with_attribute_hub = hub()
+
 def read_hub_data():
     global gen_line_with_attribute_hub
     loc_file = open("Hub-1.0", "r")
@@ -228,12 +221,16 @@ def read_hub_data():
     for each_value in data_zipped:
         enrich_msg_lines_hub(gen_line_with_attribute_hub, each_value)
 
-def f3(msg_line): return (msg_line.PLANT_ID == hub_message_structure[1].Site_Name)
-def f4(msg_line): return (msg_line.PLANT_DESC == hub_message_structure[1].Site_Description)
+count = 0        
 
-def f5(msg_line): return (msg_line.PLANT_ID == hub_message_structure[2].Site_Name)
-def f6(msg_line): return (msg_line.PLANT_DESC == hub_message_structure[2].Site_Description)
-
+def f3(msg_line):
+    global count
+    logger.console("Verifying {0} exists".format(hub_message_structure[count].Site_Name)) 
+    return (msg_line.PLANT_ID == hub_message_structure[count].Site_Name)
+def f4(msg_line):
+    global count
+    logger.console("Verifying {0} exists".format(hub_message_structure[count].Site_Description)) 
+    return (msg_line.PLANT_DESC == hub_message_structure[count].Site_Description)
 
 def simple_filter(filters, msg_structure):
     for f in filters:
@@ -242,34 +239,23 @@ def simple_filter(filters, msg_structure):
             return msg_structure
     return msg_structure
 
-def nFilter_one_liner(filters, msg_structure):
-    a = []
-    for i in range(0,15):
-        a.append((t for t in msg_structure if any(f(t,i) for f in filters)))
-    return a
-
 def validate_input_output():
     deserialize_msg_structure()
-    read_hub_data()
+    read_supplier_data()
+    filtered_rows = []
     global msg_structure_reload
-    # my_filtered_msg_structure = filter_using_non_lambda_way2([f3, f4], msg_structure)
-    msg_structure_filtered = simple_filter([f3, f4], msg_structure_reload)
-    assert len(msg_structure_filtered) > 0
-    msg_structure_filtered = simple_filter([f5, f6], msg_structure_reload)
-    assert len(msg_structure_filtered) > 0
+    for i in range(0,len(supplier_message_structure)-1):
+        global count
+        count = count + 1
+        msg_structure_filtered = simple_filter([f3, f4], msg_structure_reload)
+        if len(msg_structure_filtered) > 0:
+            filtered_rows.append (msg_structure_filtered)
+    logger.console ("Length of filtered rows are {}".format(len(filtered_rows)))
+    assert len(filtered_rows) == count
 
 if __name__ == "__main__":
-    #number_of_lines(4)
-    #logger.console("location master content has {0}".format(msg_structure))
-    #create_txt_file(msg_structure)
+    number_of_lines(4)
+    logger.console("location master content has {0}".format(msg_structure))
+    create_txt_file(msg_structure)
+    # wait for the transaction to end
     validate_input_output()
-    msg_structure_filtered = simple_filter([f3, f4], msg_structure)
-    msg_structure_filtered = simple_filter([f5, f6], msg_structure)
-
-
-
-
-
-
-
-
