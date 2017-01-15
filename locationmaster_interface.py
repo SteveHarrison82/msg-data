@@ -216,7 +216,6 @@ def read_hub_data():
     df = pd.read_csv(d, usecols=fields, delimiter='\t', dtype=str)
     for index, each_row in df.iterrows():
         data_zipped = []
-        # order of list is important
         data_zipped.append(each_row["Enterprise Code"])
         data_zipped.append(each_row["Enterprise Description"])
         data_zipped.append(each_row["Site Name"])
