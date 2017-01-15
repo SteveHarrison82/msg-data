@@ -1,5 +1,18 @@
-PLANT_ID|PLANT_DESC|FACTORY_CALENDAR_ID|VENDOR_ID|STREET|CITY|REGION_CODE|COUNTRY_CODE|ZIPCODE|BLKD_STOCK_RLV_FLAG
-0006|0006Description here: New York|69|0000000004|Pillnitzer Strasse 241|Frankfurt|European park|316|0477957383|X
-0006|0006Description here: Werk|69|0000000003|Pillnitzer Strasse 241|Paris|European park|660|3085267505|X
-0007|0007Description here: Hamburg|69|0000000003|Alsterdorfer Strasse 13|Frankfurt|Hethbrew|849|8200424098|X
-0006|0006Description here: Hamburg|JP|0000000001|Pillnitzer Strasse 241|Paris|Hethbrew|191|4018694370|X
+PLANT_ID|PLANT_DESC|FACTORY_CALENDAR_ID|VENDOR_ID|STREET|CITY|STATE_CODE|COUNTRY_CODE|ZIP_CODE|BLKD_STOCK_RLV_FLAG
+0005|0005Description here: New York|FR|0000000003|Pillnitzer Strasse 241|Berlin|European park|489|5519941104|X
+0001|0001Description here: Werk|FR|0000000001|St. Michael street|Paris|Hethbrew|496|2526226668|X
+0005|0005Description here: Hamburg|JP|0000000003|St. Michael street|Frankfurt|Hethbrew|763|2258134250|X
+0006|0006Description here: Werk|JP|0000000002|Pillnitzer Strasse 241|Hamburg|Hethbrew|832|2645723496|X
+0006|0006Description here: Werk|CA|0000000001|Neurottstrass 16|Berlin|European park|533|1703219301|X
+0007|0007Description here: Werk|US|0000000001|Pillnitzer Strasse 241|Frankfurt|Wunderland|112|5462257914|X
+0001|0001Description here: New York|CA|0000000004|Pillnitzer Strasse 241|Paris|Wunderland|430|6059332570|X
+0007|0007Description here: Hamburg|JP|0000000002|Pillnitzer Strasse 241|Hamburg|Wunderland|553|2062587639|X
+0007|0007Description here: Hamburg|01|0000000002|St. Michael street|Hamburg|Wunderland|230|2654588453|X
+0006|0006Description here: Hamburg|JP|0000000004|Pillnitzer Strasse 241|Hamburg|Wunderland|224|4772493348|X
+0005|0005Description here: New York|01|0000000003|Alsterdorfer Strasse 13|Paris|European park|123|7936449783|X
+0005|0005Description here: Werk|JP|0000000004|St. Michael street|Hamburg|Wunderland|235|1877374963|X
+0005|0005Description here: Werk|FR|0000000001|Neurottstrass 16|Hamburg|European park|409|6597421352|X
+0001|0001Description here: Hamburg|US|0000000003|St. Michael street|Hamburg|European park|862|9336652089|X
+0005|0005Description here: New York|US|0000000002|Pillnitzer Strasse 241|Frankfurt|Wunderland|133|7241462372|X
+0006|0006Description here: New York|FR|0000000003|St. Michael street|Paris|European park|451|3189675780|X
+0001|0001Description here: New York|01|0000000001|Neurottstrass 16|Paris|European park|563|0752888923|X

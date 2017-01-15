@@ -222,7 +222,7 @@ def nFilter_using_lambda(filters, msg_structure):
     return ifilter(lambda t: all(f(t) for f in filters), msg_structure)
 
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 import numpy
 
 loc_file = open ("LOCATION-MASTER.TXT", "r")
@@ -326,10 +326,10 @@ def nFilter_one_liner_2(filters, msg_structure):
     for each_value in a:
         print each_value.next()
 
-=======
+#=======
 
 # write unit test and stop running from main
->>>>>>> 626648e1a14a7cdec03e429e5a56fe1f0a765ad1
+#>>>>>>> 626648e1a14a7cdec03e429e5a56fe1f0a765ad1
 if __name__ == "__main__":
     number_of_lines(17)
     logger.console("location master content has {0}".format(msg_structure))

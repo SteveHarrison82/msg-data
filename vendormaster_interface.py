@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+
 import json
 import python_jsonschema_objects as pjs
 from io import StringIO
+import csv
+import random, string
+from robot.api import logger
+import pickle
+import pandas as pd
 
 vendor_master = u"""{
     "title": "VENDOR MASTER",
@@ -15,17 +21,15 @@ vendor_master = u"""{
             "position": "1",
             "type": "string"
         },
-        "DUN": {
+        "DUNS_NO": {
             "position": "2",
             "type": "string"
             },
         "TAX_NO": {
-            "description": "calendars",
             "position": "3",
             "type": "string"
             },
         "ADDR_ID": {
-            "description": "calendars",
             "position": "4",
             "type": "string"
             },
@@ -82,26 +86,19 @@ vendor_master = u"""{
 }"""
 
 
-position_of_VM_header = ["VENDOR_ID", "VENDOR_DESC", "DUN", "ADDR_ID", "STREET", "CITY", "STATE_CODE",
-                "COUNTRY_CODE", "ZIP_CODE", "DELETION_FLAG", "REMITTO_ADDR_ID", "REMITTO_STREET", "REMITTO_CITY",
+position_of_VM_header = ["VENDOR_ID", "VENDOR_DESC", "DUNS_NO", "ADDR_ID", "STREET", "CITY", "STATE_CODE",
+                "COUNTRY_CODE", "ZIP_CODE", "DELETION_FLAG", "REMITTO_ADDR_ID", "REMITTO_STREET",
                 "REMITTO_CITY", "REMITTO_STATE_CODE", "REMITTO_COUNTRY_CODE", "REMITTO_ZIP_CODE"]
-
-
 
 read_schema = StringIO(vendor_master)
 spec = json.load(read_schema)
-# Uset the above json spec to build the template class and corresponding object
+# Use the above json spec to build the template class and corresponding object
 builder = pjs.ObjectBuilder(spec)
 ns = builder.build_classes()
 VenMaster = ns.VendorMaster
 msg_structure = []
 msg_structure_reload = []
-import csv
-import datetime
-from itertools import ifilter
-import random, string
-from robot.api import logger
-import pickle
+
 
 def random_int(length):
     valid_letters = '1234567890'
@@ -116,7 +113,7 @@ def random_pick(choices):
 
 #create message lines with these attributes
 def enrich_msg_lines(gen_line_with_attribute):
-    gen_line_with_attribute.VENDOR_ID = random_pick(['0000000001', '0000000002', '0000000003', '0000000004'])
+    gen_line_with_attribute.VENDOR_ID = random_pick(['000000', '000000', '000000', '000000']) + random_int(4)
     gen_line_with_attribute.VENDOR_DESC = "Description : " + gen_line_with_attribute.VENDOR_ID
     gen_line_with_attribute.DUN = random_pick(['210010661', '210010662','','','', '410010667'])
     gen_line_with_attribute.ADDR_ID = '0000' + random_int(6)
@@ -194,7 +191,91 @@ def number_of_lines(lines_to_generate=1):
         serialize_msg_structure()
         create_zip_file()
 
-if __name__ == "__main__":
-    number_of_lines(100)
-    create_txt_file(msg_structure)
 
+supplier = u"""{
+    "title": "Supplier",
+    "type": "object",
+    "properties": {
+        "Enterprise Code": {
+            "position": "0",
+            "type": "string"
+        },
+        "Supplier ID": {
+            "position": "1",
+            "type": "string"
+        },
+         "Supplier Description": {
+            "position": "3",
+            "type": "string"
+            }
+    }
+}"""
+
+read_schema = StringIO(supplier)
+spec = json.load(read_schema)
+# Use the above json spec to build the template class and corresponding object
+builder = pjs.ObjectBuilder(spec)
+ns = builder.build_classes()
+supplier_vendor = ns.Supplier
+
+supplier_message_structure = []
+
+def enrich_msg_lines_supplier(gen_line_with_attribute, zip_line):
+    gen_line_with_attribute["Enterprise Code"]= zip_line[0]
+    gen_line_with_attribute["Supplier ID"] = zip_line[1]
+    gen_line_with_attribute["Supplier Description"] = zip_line[2]
+    supplier_message_structure.append(gen_line_with_attribute)
+    return supplier_message_structure
+
+gen_line_with_attribute_supplier = supplier_vendor()
+
+def read_supplier_data():
+    global gen_line_with_attribute_supplier
+    loc_file = open("Supplier-1.0", "r")
+    loc_file_as_string = loc_file.read()
+    d = StringIO(unicode(loc_file_as_string))
+    fields = gen_line_with_attribute_supplier.keys()
+    df = pd.read_csv(d, usecols=fields, delimiter='\t', dtype=str)
+    for index, each_row in df.iterrows():
+        data_zipped = []
+        data_zipped.append(each_row[0])
+        data_zipped.append(each_row[1])
+        data_zipped.append(each_row[2])
+        gen_line_with_attribute_supplier = supplier_vendor()
+        enrich_msg_lines_supplier(gen_line_with_attribute_supplier, data_zipped)
+
+count = 0
+
+def f3(msg_line):
+    global count
+    return (msg_line.VENDOR_ID == supplier_message_structure[count]["Supplier ID"])
+def f4(msg_line):
+    global count
+    return (msg_line.VENDOR_DESC == supplier_message_structure[count]["Supplier Description"])
+
+def simple_filter(filters, msg_structure):
+    for f in filters:
+        msg_structure = filter(f, msg_structure)
+        if not msg_structure:
+            return msg_structure
+    return msg_structure
+
+def validate_input_output():
+    deserialize_msg_structure()
+    read_supplier_data()
+    filtered_rows = []
+    global msg_structure_reload
+    for i in range(0,len(supplier_message_structure)-1):
+        global count
+        count = count + 1
+        msg_structure_filtered = simple_filter([f3, f4], msg_structure_reload)
+        if len(msg_structure_filtered) > 0:
+            filtered_rows.append (msg_structure_filtered)
+    logger.console ("Length of filtered rows are {}".format(len(filtered_rows)))
+    assert len(filtered_rows) == count
+
+if __name__ == "__main__":
+    # number_of_lines(3)
+    #logger.console("location master content has {0}".format(str(msg_structure)))
+    #create_txt_file(msg_structure)
+    validate_input_output()

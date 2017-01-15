@@ -216,11 +216,13 @@ def read_hub_data():
     df = pd.read_csv(d, usecols=fields, delimiter='\t', dtype=str)
     for index, each_row in df.iterrows():
         data_zipped = []
-        data_zipped.append(each_row[0])
-        data_zipped.append(each_row[1])
-        data_zipped.append(each_row[2])
-        data_zipped.append(each_row[3])
-        data_zipped.append(each_row[4])
+        # order of list is important
+        data_zipped.append(each_row["Enterprise Code"])
+        data_zipped.append(each_row["Enterprise Description"])
+        data_zipped.append(each_row["Site Name"])
+        data_zipped.append(each_row["Site Description"])
+        data_zipped.append(each_row["Site Type"])
+        gen_line_with_attribute_hub = hub()
         enrich_msg_lines_hub(gen_line_with_attribute_hub, data_zipped)
 
 count = 0

@@ -1,5 +1,5 @@
-CITY|REGION_CODE|PLANT_ID|VENDOR_ID|ZIPCODE|FACTORY_CALENDAR_ID|STREET|COUNTRY_CODE|BLKD_STOCK_RLV_FLAG|PLANT_DESC
-Frankfurt|European park|0006|0000000004|0477957383|69|Pillnitzer Strasse 241|316|X|0006Description here: New York
-Paris|European park|0006|0000000003|3085267505|69|Pillnitzer Strasse 241|660|X|0006Description here: Werk
-Frankfurt|Hethbrew|0007|0000000003|8200424098|69|Alsterdorfer Strasse 13|849|X|0007Description here: Hamburg
-Paris|Hethbrew|0006|0000000001|4018694370|JP|Pillnitzer Strasse 241|191|X|0006Description here: Hamburg
+CITY|REGION_CODE|PLANT_ID|VENDOR_ID|FACTORY_CALENDAR_ID|STREET|COUNTRY_CODE|BLKD_STOCK_RLV_FLAG|ZIP_CODE|PLANT_DESC
+Frankfurt|Wunderland|0006|0000000003|69|St. Michael street|012|X|2205415366|0006Description here: Hamburg
+Berlin|European park|0006|0000000002|01|St. Michael street|834|X|7904400024|0006Description here: Hamburg
+Berlin|European park|0001|0000000001|JP|Neurottstrass 16|745|X|2629513929|0001Description here: New York
+Berlin|Wunderland|0006|0000000001|CA|Neurottstrass 16|094|X|5510706912|0006Description here: Hamburg

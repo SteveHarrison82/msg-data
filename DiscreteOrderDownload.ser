@@ -1,0 +1,53 @@
+(dp0
+VCustomer Address - Descriptor
+p1
+S'provide address description here'
+p2
+sVOrder Creation Date
+p3
+S'2017-01-05T00:00:00+0000'
+p4
+sVOrder Number
+p5
+S'0745000177956'
+p6
+s.(dp0
+VCustomer Address - Descriptor
+p1
+S'provide address description here'
+p2
+sVOrder Creation Date
+p3
+S'2017-01-05T00:00:00+0000'
+p4
+sVOrder Number
+p5
+S'0745000177978'
+p6
+s.(dp0
+VCustomer Address - Descriptor
+p1
+S'provide address description here'
+p2
+sVOrder Creation Date
+p3
+S'2017-01-05T00:00:00+0000'
+p4
+sVOrder Number
+p5
+S'0745000177956'
+p6
+s.(dp0
+VCustomer Address - Descriptor
+p1
+S'provide address description here'
+p2
+sVOrder Creation Date
+p3
+S'2017-01-05T00:00:00+0000'
+p4
+sVOrder Number
+p5
+S'074500017795'
+p6
+s.
