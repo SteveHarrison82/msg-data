@@ -1,0 +1,727 @@
+(dp0
+VShipped Quantity
+p1
+S'33.0000'
+p2
+sVFreight Cost
+p3
+S'0.0000'
+p4
+sVFlex Float ASN Header 2
+p5
+g4
+sVShipment Creation Date
+p6
+S'2017-01-09T15:43:49+0000'
+p7
+sVRef Order Type
+p8
+S'DiscreteOrder'
+p9
+sVShipment Date
+p10
+g7
+sVFlex Int ASN Header 4
+p11
+S'0'
+p12
+sVRef Order Line ID
+p13
+S'30'
+p14
+sVCustomer Description
+p15
+S'provide address description here'
+p16
+sVRef Order Promise ID
+p17
+S'1'
+p18
+sVShipment Creator Code
+p19
+S'e2open_super_user'
+p20
+sVCurrency
+p21
+S'EUR'
+p22
+sVFlex Int ASN Line 5
+p23
+g12
+sVFlex Int ASN Line 4
+p24
+g12
+sVShip To Site
+p25
+S'1000'
+p26
+sVFlex Int ASN Header 1
+p27
+g12
+sVFlex Int ASN Line 1
+p28
+g12
+sVFlex Float ASN Header 5
+p29
+g4
+sVFlex Int ASN Line 3
+p30
+g12
+sVFlex Int ASN Line 2
+p31
+g12
+sVFlex Int ASN Header 5
+p32
+g12
+sVFlex Float ASN Header 4
+p33
+g4
+sV# Of Boxes
+p34
+g12
+sVFlex Float ASN Header 3
+p35
+g4
+sVNumber Of Packages
+p36
+g12
+sVRef Order ID
+p37
+S'074500017596'
+p38
+sVShip To Customer ID
+p39
+g26
+sVCustomer Item ID
+p40
+S'1400-750'
+p41
+sVRef Order Request ID
+p42
+g18
+sVSupplier Description
+p43
+S'0000001000'
+p44
+sVPlanned Delivery Date
+p45
+g7
+sVShip To Customer Item ID
+p46
+S'100-100'
+p47
+sVShipment Line Status
+p48
+S'Shipped'
+p49
+sVSupplier Item ID
+p50
+S'VENDOR_MATERIAL_1'
+p51
+sVShipment Status
+p52
+g49
+sVCustomer Item Description
+p53
+S'Provide customer item Description'
+p54
+sVFlex Int ASN Header 2
+p55
+g12
+sVSupplier ID
+p56
+S'Supplier test 4'
+p57
+sVWeight
+p58
+g4
+sVCustomer ID
+p59
+S'2017-01-05T00:00:00+0000'
+p60
+sVShip To Type (Site/Hub)
+p61
+S'Site'
+p62
+sVFlex Float ASN Line 1
+p63
+g4
+sVFlex Float ASN Line 2
+p64
+g4
+sVFlex Float ASN Line 3
+p65
+g4
+sVFlex Float ASN Line 4
+p66
+g4
+sVFlex Float ASN Line 5
+p67
+g4
+sVFlex Float ASN Header 1
+p68
+g4
+sVFlex Int ASN Header 3
+p69
+g12
+sVShip To Customer Item Desc
+p70
+S'Casing'
+p71
+sVShipment ID
+p72
+S'0745000415171'
+p73
+sVShipment Line ID
+p74
+g18
+sVUnit Of Measure
+p75
+S'ST'
+p76
+s.(dp0
+VShipped Quantity
+p1
+S'33.0000'
+p2
+sVFreight Cost
+p3
+S'0.0000'
+p4
+sVFlex Float ASN Header 2
+p5
+g4
+sVShipment Creation Date
+p6
+S'2017-01-09T15:43:49+0000'
+p7
+sVRef Order Type
+p8
+S'DiscreteOrder'
+p9
+sVShipment Date
+p10
+g7
+sVFlex Int ASN Header 4
+p11
+S'0'
+p12
+sVRef Order Line ID
+p13
+S'10'
+p14
+sVCustomer Description
+p15
+S'provide address description here'
+p16
+sVRef Order Promise ID
+p17
+S'1'
+p18
+sVShipment Creator Code
+p19
+S'e2open_super_user'
+p20
+sVCurrency
+p21
+S'USD'
+p22
+sVFlex Int ASN Line 5
+p23
+g12
+sVFlex Int ASN Line 4
+p24
+g12
+sVShip To Site
+p25
+S'1000'
+p26
+sVFlex Int ASN Header 1
+p27
+g12
+sVFlex Int ASN Line 1
+p28
+g12
+sVFlex Float ASN Header 5
+p29
+g4
+sVFlex Int ASN Line 3
+p30
+g12
+sVFlex Int ASN Line 2
+p31
+g12
+sVFlex Int ASN Header 5
+p32
+g12
+sVFlex Float ASN Header 4
+p33
+g4
+sV# Of Boxes
+p34
+g12
+sVFlex Float ASN Header 3
+p35
+g4
+sVNumber Of Packages
+p36
+g12
+sVRef Order ID
+p37
+S'074500017594'
+p38
+sVShip To Customer ID
+p39
+g26
+sVCustomer Item ID
+p40
+S'1400-750'
+p41
+sVRef Order Request ID
+p42
+S'2'
+p43
+sVSupplier Description
+p44
+S'0000001000'
+p45
+sVPlanned Delivery Date
+p46
+g7
+sVShip To Customer Item ID
+p47
+g41
+sVShipment Line Status
+p48
+S'Shipped'
+p49
+sVSupplier Item ID
+p50
+S'VENDOR_MATERIAL_2'
+p51
+sVShipment Status
+p52
+g49
+sVCustomer Item Description
+p53
+S'Provide customer item Description'
+p54
+sVFlex Int ASN Header 2
+p55
+g12
+sVSupplier ID
+p56
+S'Supplier test 4'
+p57
+sVWeight
+p58
+g4
+sVCustomer ID
+p59
+S'2017-01-05T00:00:00+0000'
+p60
+sVShip To Type (Site/Hub)
+p61
+S'Site'
+p62
+sVFlex Float ASN Line 1
+p63
+g4
+sVFlex Float ASN Line 2
+p64
+g4
+sVFlex Float ASN Line 3
+p65
+g4
+sVFlex Float ASN Line 4
+p66
+g4
+sVFlex Float ASN Line 5
+p67
+g4
+sVFlex Float ASN Header 1
+p68
+g4
+sVFlex Int ASN Header 3
+p69
+g12
+sVShip To Customer Item Desc
+p70
+S'Casing'
+p71
+sVShipment ID
+p72
+S'0745000901309'
+p73
+sVShipment Line ID
+p74
+g18
+sVUnit Of Measure
+p75
+S'ST'
+p76
+s.(dp0
+VShipped Quantity
+p1
+S'33.0000'
+p2
+sVFreight Cost
+p3
+S'0.0000'
+p4
+sVFlex Float ASN Header 2
+p5
+g4
+sVShipment Creation Date
+p6
+S'2017-01-09T15:43:49+0000'
+p7
+sVRef Order Type
+p8
+S'DiscreteOrder'
+p9
+sVShipment Date
+p10
+g7
+sVFlex Int ASN Header 4
+p11
+S'0'
+p12
+sVRef Order Line ID
+p13
+S'10'
+p14
+sVCustomer Description
+p15
+S'provide address description here'
+p16
+sVRef Order Promise ID
+p17
+S'1'
+p18
+sVShipment Creator Code
+p19
+S'e2open_super_user'
+p20
+sVCurrency
+p21
+S'EUR'
+p22
+sVFlex Int ASN Line 5
+p23
+g12
+sVFlex Int ASN Line 4
+p24
+g12
+sVShip To Site
+p25
+S'2000'
+p26
+sVFlex Int ASN Header 1
+p27
+g12
+sVFlex Int ASN Line 1
+p28
+g12
+sVFlex Float ASN Header 5
+p29
+g4
+sVFlex Int ASN Line 3
+p30
+g12
+sVFlex Int ASN Line 2
+p31
+g12
+sVFlex Int ASN Header 5
+p32
+g12
+sVFlex Float ASN Header 4
+p33
+g4
+sV# Of Boxes
+p34
+g12
+sVFlex Float ASN Header 3
+p35
+g4
+sVNumber Of Packages
+p36
+g12
+sVRef Order ID
+p37
+S'074500017596'
+p38
+sVShip To Customer ID
+p39
+S'1000'
+p40
+sVCustomer Item ID
+p41
+S'1400-750'
+p42
+sVRef Order Request ID
+p43
+S'2'
+p44
+sVSupplier Description
+p45
+S'0000001000'
+p46
+sVPlanned Delivery Date
+p47
+g7
+sVShip To Customer Item ID
+p48
+S'100-100'
+p49
+sVShipment Line Status
+p50
+S'Shipped'
+p51
+sVSupplier Item ID
+p52
+S'VENDOR_MATERIAL_3'
+p53
+sVShipment Status
+p54
+g51
+sVCustomer Item Description
+p55
+S'Provide customer item Description'
+p56
+sVFlex Int ASN Header 2
+p57
+g12
+sVSupplier ID
+p58
+S'Supplier test 4'
+p59
+sVWeight
+p60
+g4
+sVCustomer ID
+p61
+S'2017-01-05T00:00:00+0000'
+p62
+sVShip To Type (Site/Hub)
+p63
+S'Site'
+p64
+sVFlex Float ASN Line 1
+p65
+g4
+sVFlex Float ASN Line 2
+p66
+g4
+sVFlex Float ASN Line 3
+p67
+g4
+sVFlex Float ASN Line 4
+p68
+g4
+sVFlex Float ASN Line 5
+p69
+g4
+sVFlex Float ASN Header 1
+p70
+g4
+sVFlex Int ASN Header 3
+p71
+g12
+sVShip To Customer Item Desc
+p72
+S'Casing'
+p73
+sVShipment ID
+p74
+S'0745000558539'
+p75
+sVShipment Line ID
+p76
+g18
+sVUnit Of Measure
+p77
+S'ST'
+p78
+s.(dp0
+VShipped Quantity
+p1
+S'33.0000'
+p2
+sVFreight Cost
+p3
+S'0.0000'
+p4
+sVFlex Float ASN Header 2
+p5
+g4
+sVShipment Creation Date
+p6
+S'2017-01-09T15:43:49+0000'
+p7
+sVRef Order Type
+p8
+S'DiscreteOrder'
+p9
+sVShipment Date
+p10
+g7
+sVFlex Int ASN Header 4
+p11
+S'0'
+p12
+sVRef Order Line ID
+p13
+S'30'
+p14
+sVCustomer Description
+p15
+S'provide address description here'
+p16
+sVRef Order Promise ID
+p17
+S'1'
+p18
+sVShipment Creator Code
+p19
+S'e2open_super_user'
+p20
+sVCurrency
+p21
+S'EUR'
+p22
+sVFlex Int ASN Line 5
+p23
+g12
+sVFlex Int ASN Line 4
+p24
+g12
+sVShip To Site
+p25
+S'1000'
+p26
+sVFlex Int ASN Header 1
+p27
+g12
+sVFlex Int ASN Line 1
+p28
+g12
+sVFlex Float ASN Header 5
+p29
+g4
+sVFlex Int ASN Line 3
+p30
+g12
+sVFlex Int ASN Line 2
+p31
+g12
+sVFlex Int ASN Header 5
+p32
+g12
+sVFlex Float ASN Header 4
+p33
+g4
+sV# Of Boxes
+p34
+g12
+sVFlex Float ASN Header 3
+p35
+g4
+sVNumber Of Packages
+p36
+g12
+sVRef Order ID
+p37
+S'074500017595'
+p38
+sVShip To Customer ID
+p39
+g26
+sVCustomer Item ID
+p40
+S'1400-750'
+p41
+sVRef Order Request ID
+p42
+g18
+sVSupplier Description
+p43
+S'0000001000'
+p44
+sVPlanned Delivery Date
+p45
+g7
+sVShip To Customer Item ID
+p46
+S'100-100'
+p47
+sVShipment Line Status
+p48
+S'Shipped'
+p49
+sVSupplier Item ID
+p50
+S'VENDOR_MATERIAL_3'
+p51
+sVShipment Status
+p52
+g49
+sVCustomer Item Description
+p53
+S'Provide customer item Description'
+p54
+sVFlex Int ASN Header 2
+p55
+g12
+sVSupplier ID
+p56
+S'Supplier test 4'
+p57
+sVWeight
+p58
+g4
+sVCustomer ID
+p59
+S'2017-01-05T00:00:00+0000'
+p60
+sVShip To Type (Site/Hub)
+p61
+S'Site'
+p62
+sVFlex Float ASN Line 1
+p63
+g4
+sVFlex Float ASN Line 2
+p64
+g4
+sVFlex Float ASN Line 3
+p65
+g4
+sVFlex Float ASN Line 4
+p66
+g4
+sVFlex Float ASN Line 5
+p67
+g4
+sVFlex Float ASN Header 1
+p68
+g4
+sVFlex Int ASN Header 3
+p69
+g12
+sVShip To Customer Item Desc
+p70
+S'Casing'
+p71
+sVShipment ID
+p72
+S'07450830765'
+p73
+sVShipment Line ID
+p74
+g18
+sVUnit Of Measure
+p75
+S'ST'
+p76
+s.
